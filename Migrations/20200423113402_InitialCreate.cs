@@ -13,10 +13,9 @@ namespace DotNetCoreSqlDb.Migrations
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Description = table.Column<string>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,8 +25,7 @@ namespace DotNetCoreSqlDb.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Todo");
+            migrationBuilder.DropTable(name: "Todo");
         }
     }
 }
